@@ -15,7 +15,7 @@ sudo apt --fix-broken install
 sudo apt install nodejs npm
 
 #Cloning the source files of the app on to the EC2
-cd C5-Deployment-Workload-5/frontend/
+cd ./ecommerce_terraform_deployment/frontend/
 
 #Installing react-scripts pkgs
 npm install react-scripts --save

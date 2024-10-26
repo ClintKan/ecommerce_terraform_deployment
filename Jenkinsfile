@@ -4,14 +4,22 @@ pipeline {
     stage ('Build') {
       steps {
         sh '''#!/bin/bash
-        <code to build the application>
+        sudo apt update && sudo apt upgrade -y
+        sudo apt install software-properties-common -y
+        sudo add-apt-repository ppa:deadsnakes/ppa -y
+        sudo apt update && sudo apt upgrade -y
+        export PrivateIP="$(hostname -I)"
+        sudo apt install python3.9 python3-pip python3.9-venv python3.9-dev -y
+        sudo apt install python3-pip -y && pip install --upgrade pip
+        
         '''
      }
    }
     stage ('Test') {
       steps {
         sh '''#!/bin/bash
-        <code to activate virtual environment>
+        python3.9 -m venv venv
+        . venv/bin/activate
         pip install pytest-django
         python backend/manage.py makemigrations
         python backend/manage.py migrate

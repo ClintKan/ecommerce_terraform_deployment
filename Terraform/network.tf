@@ -85,7 +85,7 @@ resource "aws_route_table" "priv1a_rttable" {
   vpc_id = aws_vpc.wl5vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0" # this is destination the traffic should get to
+    cidr_block = "10.0.0.0/26" # this is destination the traffic should get to
     gateway_id = aws_nat_gateway.wl5vpc_ngw_1a.id
   }
   tags = {
@@ -99,7 +99,7 @@ resource "aws_route_table" "priv1b_rttable" {
   vpc_id = aws_vpc.wl5vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0" # this is destination the traffic should get to
+    cidr_block = "10.0.0.64/26" # this is destination the traffic should get to
     gateway_id = aws_nat_gateway.wl5vpc_ngw_1b.id
   }
   tags = {
@@ -147,33 +147,33 @@ resource "aws_route_table_association" "priv1b" {
 ######------------------
 
 
-#Creating a Private RDS Route Table 1a
-resource "aws_route_table" "rds_rttbl_1a" {
+#Creating a Private RDS Route Table 1
+resource "aws_route_table" "rds_rttbl_1" {
   vpc_id = aws_vpc.wl5vpc.id
 
   route {
-    cidr_block = "10.0.0.128/27" # this is destination the traffic should get to
+    cidr_block = "10.0.0.128/26" # this is destination the traffic should get to
     gateway_id = aws_nat_gateway.wl5vpc_ngw_1a.id
   }
   tags = {
-    "Name" : "rds_rttbl_1a"
+    "Name" : "rds_rttbl_1"
   }
 
 }
 
-#Creating a Private RDS Route Table 1b
-resource "aws_route_table" "rds_rttbl_1b" {
-  vpc_id = aws_vpc.wl5vpc.id
+# #Creating a Private RDS Route Table 1b
+# resource "aws_route_table" "rds_rttbl_1b" {
+#   vpc_id = aws_vpc.wl5vpc.id
 
-  route {
-    cidr_block = "10.0.0.160/27" # this is destination the traffic should get to
-    gateway_id = aws_nat_gateway.wl5vpc_ngw_1b.id
-  }
-  tags = {
-    "Name" : "rds_rttbl_1b"
-  }
+#   route {
+#     cidr_block = "10.0.0.160/27" # this is destination the traffic should get to
+#     gateway_id = aws_nat_gateway.wl5vpc_ngw_1b.id
+#   }
+#   tags = {
+#     "Name" : "rds_rttbl_1b"
+#   }
 
-}
+# }
 
 #Creating the RDS private_subnet 1a
 resource "aws_subnet" "rds_subnet_1a" {
