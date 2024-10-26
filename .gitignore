@@ -1,5 +1,4 @@
 ./Terraform/variables.auto.tfvars
-*/.tfvars
 .DS_Store
 node_modules
 .tmp
@@ -15,7 +14,7 @@ npm-debug.log
 tfplan
 
 #terraform variables
-**/terraform.tfvars
+*.tfvars
 
 #terraform init files 
 **/.terraform
