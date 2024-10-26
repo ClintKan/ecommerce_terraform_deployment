@@ -13,7 +13,7 @@ npm-debug.log
 tfplan
 
 #terraform variables
-Terraform/variables.auto.tfvars
+*.auto.tfvars
 
 #terraform init files 
 **/.terraform
