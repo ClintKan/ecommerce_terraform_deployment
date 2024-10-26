@@ -81,7 +81,7 @@ resource "aws_security_group" "priv_secgrp" {
   }
 }
 
-# PPrivate Security Group "priv_rds_secgrp" that allows SSH & Django traffic.
+# Private Security Group "priv_rds_secgrp" that allows SSH & Django traffic.
 resource "aws_security_group" "priv_rds_secgrp" {
   name        = "priv_rds_secgrp"
   description = "sec grp for priv subnet"

@@ -6,7 +6,7 @@ resource "aws_instance" "WebSrv-1a" {
   # Security groups control the inbound and outbound traffic to WebSrv EC2 instance.
   vpc_security_group_ids = [aws_security_group.pub_secgrp.id] #
   key_name               = "Clint_workld5"                    # The key pair name for the workload
-  #user_data              = file("jenkins_install.sh")
+  user_data              = file("./Scripts/Frontend.sh")
   subnet_id = aws_subnet.pub_subnet_1a.id # associating a subnet to be tied to this EC2
 
   tags = {
@@ -23,7 +23,7 @@ resource "aws_instance" "WebSrv-1b" {
   # Security groups control the inbound and outbound traffic to WebSrv EC2 instance.
   vpc_security_group_ids = [aws_security_group.pub_secgrp.id] #
   key_name               = "Clint_workld5"                    # The key pair name for the workload
-  #user_data              = file("jenkins_install.sh")
+  user_data              = file("./Scripts/Frontend.sh")
   subnet_id = aws_subnet.pub_subnet_1b.id # associating a subnet to be tied to this EC2
 
   tags = {
@@ -43,7 +43,7 @@ resource "aws_instance" "AppSrv-1a" {
   # Security groups control the inbound and outbound traffic to WebSrv EC2 instance.
   vpc_security_group_ids = [aws_security_group.priv_secgrp.id] #
   key_name               = "Clint_workld5"                     # The key pair name for the workload
-  #user_data              = file("XXXXX.sh")
+  user_data              = file("./Scripts/Backend.sh")
   subnet_id = aws_subnet.priv_subnet_1a.id # associating a subnet to be tied to this EC2
 
   tags = {
@@ -60,7 +60,7 @@ resource "aws_instance" "AppSrv-1b" {
   # Security groups control the inbound and outbound traffic to WebSrv EC2 instance.
   vpc_security_group_ids = [aws_security_group.priv_secgrp.id] #
   key_name               = "Clint_workld5"                     # The key pair name for the workload
-  #user_data              = file("XXXXX.sh")
+  user_data              = file("./Scripts/Backend.sh")
   subnet_id = aws_subnet.priv_subnet_1b.id # associating a subnet to be tied to this EC2
 
   tags = {
