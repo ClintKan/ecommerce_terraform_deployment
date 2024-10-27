@@ -32,7 +32,7 @@ resource "aws_security_group" "pub_secgrp" {
     from_port   = 9100
     to_port     = 9100
     protocol    = "tcp"
-    cidr_blocks = ["172.31.32.0/20"]
+    cidr_blocks = ["172.31.0.0/20"]
   }
 
   # Egress is the traffic coming out of the infra
@@ -47,7 +47,7 @@ resource "aws_security_group" "pub_secgrp" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"               # "-1" means all protocols
-    cidr_blocks = ["172.31.32.0/20"] # Allow traffic to the specific IP address
+    cidr_blocks = ["172.31.0.0/20"] # Allow traffic to the specific IP address
   }
 
   # Tags for the security group
@@ -85,7 +85,7 @@ resource "aws_security_group" "priv_secgrp" {
     from_port   = 9100
     to_port     = 9100
     protocol    = "tcp"
-    cidr_blocks = ["172.31.32.0/20"]
+    cidr_blocks = ["172.31.0.0/20"]
   }
 
   # Egress is the traffic coming out of the infra
@@ -100,7 +100,7 @@ resource "aws_security_group" "priv_secgrp" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"               # "-1" means all protocols
-    cidr_blocks = ["172.31.32.0/20"] # Allow traffic to the specific IP address
+    cidr_blocks = ["172.31.0.0/20"] # Allow traffic to the specific IP address
   }
   # Tags for the security group
   tags = {

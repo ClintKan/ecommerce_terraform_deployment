@@ -1,8 +1,8 @@
-variable "access_key" {
+variable "aws_access_key" {
   type      = string
   sensitive = true
 }
-variable "secret_key" {
+variable "aws_secret_key" {
   type      = string
   sensitive = true
 }
@@ -27,19 +27,13 @@ variable "db_name" {
 variable "db_username" {
   description = "Username for the master DB user"
   type        = string
-  default     = "kurac5user"
+  sensitive = true
+  default     = ""
 }
 
 variable "db_password" {
   description = "Password for the master DB user"
   type        = string
-  default     = "kurac5password"
-}
-
-variable "aws_access_key" {
-  
-}
-
-variable "aws_secret_key" {
-  
+  sensitive = true
+  default     = ""
 }

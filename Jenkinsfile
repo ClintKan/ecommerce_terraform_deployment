@@ -11,7 +11,6 @@ pipeline {
         export PrivateIP="$(hostname -I)"
         sudo apt install python3.9 python3-pip python3.9-venv python3.9-dev -y
         sudo apt install python3-pip -y && pip install --upgrade pip
-        
         '''
      }
    }
@@ -39,18 +38,20 @@ pipeline {
       stage('Plan') {
         steps {
           withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
-                        string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
+                        string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key'),
+                        string(credentialsId: 'DB_Username', variable: 'db_username'),
+                        string(credentialsId: 'DB_Password', variable: 'db_password')]) {
                             dir('Terraform') {
-                              sh 'terraform plan -out plan.tfplan -var="aws_access_key=${aws_access_key}" -var="aws_secret_key=${aws_secret_key}"' 
+                              sh 'terraform plan -out plan.tfplan -var="db_username=${db_username}" -var="db_password=${db_password} -var="aws_access_key=${aws_access_key}" -var="aws_secret_key=${aws_secret_key}"' 
                             }
           }
         }     
       }
       stage('Apply') {
         steps {
-            dir('Terraform') {
-                sh 'terraform apply plan.tfplan' 
-                }
+          dir('Terraform') {
+            sh 'terraform apply plan.tfplan'
+            }
         }  
       }       
     }

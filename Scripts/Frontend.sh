@@ -65,10 +65,18 @@ sudo apt update && sudo apt upgrade -y
 
 #Fixing any broken dependencies of pkg mgmt systems
 sudo apt --fix-broken install
+
+sleep 15
+
 sudo apt install nodejs npm
 
+#scp -i “path-to-private-key.pem” ubuntu@public_ip_of_the_destination:/sourcepath ~/
+
 #Cloning the source files of the app on to the EC2
-cd ./ecommerce_terraform_deployment/frontend/
+git clone https://github.com/ClintKan/ecommerce_terraform_deployment.git
+
+# Move into the project folder
+cd ./ecommerce_terraform_deployment
 
 #Installing react-scripts pkgs
 npm install react-scripts --save

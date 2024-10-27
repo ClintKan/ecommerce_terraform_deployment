@@ -68,14 +68,9 @@ sudo apt update && sudo apt upgrade -y
 export PrivateIP="$(hostname -I)"
 
 #Cloning the source files of the app on to the EC2
-git clone https://github.com/kura-labs-org/C5-Deployment-Workload-5.git
+git clone https://github.com/ClintKan/ecommerce_terraform_deployment.git
 
-#Copying the cloned folder into the proper project folder name
-cp -r C5-Deployment-Workload-5 ecommerce_terraform_deployment
-
-# Deleting the cloned (old) folder
-rm -rf C5-Deployment-Workload-5/
-
+# Move into the project folder
 cd ./ecommerce_terraform_deployment
 
 #creating and activating a virtual environment 'venv'
@@ -93,6 +88,7 @@ sudo apt install python3-pip -y && pip install --upgrade pip
 pip install -r requirements.txt
 
 # local variable to call the private IP of the ec2 i.e in list format 'IP_Address'
+#sed -i 's/http:\/\/private_ec2_ip:8000/http:\/\/your_ip_address:8000/' package.json
 
 #Changing permissions of the file 'manage.py' to be run
 chmod +x ./manage.py
