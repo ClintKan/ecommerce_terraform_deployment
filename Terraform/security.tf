@@ -46,7 +46,7 @@ resource "aws_security_group" "pub_secgrp" {
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "-1"               # "-1" means all protocols
+    protocol    = "-1"              # "-1" means all protocols
     cidr_blocks = ["172.31.0.0/20"] # Allow traffic to the specific IP address
   }
 
@@ -99,7 +99,7 @@ resource "aws_security_group" "priv_secgrp" {
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "-1"               # "-1" means all protocols
+    protocol    = "-1"              # "-1" means all protocols
     cidr_blocks = ["172.31.0.0/20"] # Allow traffic to the specific IP address
   }
   # Tags for the security group

@@ -27,13 +27,13 @@ variable "db_name" {
 variable "db_username" {
   description = "Username for the master DB user"
   type        = string
-  sensitive = true
+  sensitive   = true
   default     = ""
 }
 
 variable "db_password" {
   description = "Password for the master DB user"
   type        = string
-  sensitive = true
+  sensitive   = true
   default     = ""
 }
