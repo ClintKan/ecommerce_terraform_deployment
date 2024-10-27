@@ -13,6 +13,8 @@ resource "aws_instance" "WebSrv-1a" {
     "Name" : "WebSrv-1a"
   }
 
+  depends_on = [aws_instance.AppSrv-1a]
+
 }
 
 # Creating of the EC2 Instance for the web server in AZ - us-east-1b, in the pub subnet
@@ -29,6 +31,8 @@ resource "aws_instance" "WebSrv-1b" {
   tags = {
     "Name" : "WebSrv-1b"
   }
+
+  depends_on = [aws_instance.AppSrv-1b]
 
 }
 
@@ -50,6 +54,8 @@ resource "aws_instance" "AppSrv-1a" {
     "Name" : "AppSrv-1a"
   }
 
+  depends_on = [aws_db_instance.postgres_db]
+  
 }
 
 # Creating of the EC2 Instance for the App server in AZ - us-east-1b, in the priv subnet
@@ -66,6 +72,8 @@ resource "aws_instance" "AppSrv-1b" {
   tags = {
     "Name" : "AppSrv-1b"
   }
+
+  depends_on = [aws_db_instance.postgres_db]
 
 }
 

@@ -27,12 +27,27 @@ resource "aws_security_group" "pub_secgrp" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "Node Exporter"
+    from_port   = 9100
+    to_port     = 9100
+    protocol    = "tcp"
+    cidr_blocks = ["172.31.32.0/20"]
+  }
+
   # Egress is the traffic coming out of the infra
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"          # "-1" means all protocols
     cidr_blocks = ["0.0.0.0/0"] # Allow traffic to any IP address
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"            # "-1" means all protocols
+    cidr_blocks = ["172.31.32.0/20"] # Allow traffic to the specific IP address
   }
 
   # Tags for the security group
@@ -44,7 +59,7 @@ resource "aws_security_group" "pub_secgrp" {
 
 
 
-# PPrivate Security Group "priv_secgrp" that allows SSH & Django traffic.
+# Private Security Group "priv_secgrp" that allows SSH & Django traffic.
 resource "aws_security_group" "priv_secgrp" {
   name        = "priv_secgrp"
   description = "sec grp for priv subnet"
@@ -65,15 +80,28 @@ resource "aws_security_group" "priv_secgrp" {
     protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/25"]
   }
+  ingress {
+    description = "Node Exporter"
+    from_port   = 9100
+    to_port     = 9100
+    protocol    = "tcp"
+    cidr_blocks = ["172.31.32.0/20"]
+  }
 
   # Egress is the traffic coming out of the infra
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"            # "-1" means all protocols
-    cidr_blocks = ["10.0.0.0/25"] # Allow traffic to any IP address
+    cidr_blocks = ["10.0.0.0/25"] # Allow traffic to the specific IP address
   }
 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"            # "-1" means all protocols
+    cidr_blocks = ["172.31.32.0/20"] # Allow traffic to the specific IP address
+  }
   # Tags for the security group
   tags = {
     "Name" : "priv_secgrp" # Name tag for the security group
