@@ -35,3 +35,11 @@ variable "db_password" {
   type        = string
   default     = "kurac5password"
 }
+
+variable "aws_access_key" {
+  
+}
+
+variable "aws_secret_key" {
+  
+}
