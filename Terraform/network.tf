@@ -211,13 +211,13 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 # Associating the RDS route table with the rds_subnet_1a
 resource "aws_route_table_association" "rds_subnet_1a" {
   subnet_id      = aws_subnet.rds_subnet_1a.id
-  route_table_id = aws_route_table.rds_rttbl_1a.id
+  route_table_id = aws_route_table.rds_rttbl_1.id
 }
 
 # Associating the RDS route table with the rds_subnet_1b
 resource "aws_route_table_association" "backend" {
   subnet_id      = aws_subnet.rds_subnet_1b.id
-  route_table_id = aws_route_table.rds_rttbl_1b.id
+  route_table_id = aws_route_table.rds_rttbl_1.id
 }
 
 
@@ -227,9 +227,9 @@ resource "aws_route_table_association" "backend" {
 
 #Creating the nat gateway
 resource "aws_nat_gateway" "wl5vpc_ngw_1a" {
-  allocation_id     = aws_eip.elastic_ip.id
-  subnet_id         = aws_subnet.pub_subnet_1a.id
-  depends_on        = [aws_internet_gateway.wl5vpc_igw] # critical to have this for systematic creation of resources
+  allocation_id = aws_eip.elastic_ip.id
+  subnet_id     = aws_subnet.pub_subnet_1a.id
+  depends_on    = [aws_internet_gateway.wl5vpc_igw] # critical to have this for systematic creation of resources
 
   tags = {
     "Name" : "wl5vpc_ngw_1a"
