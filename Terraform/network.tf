@@ -227,7 +227,7 @@ resource "aws_route_table_association" "backend" {
 
 #Creating the nat gateway
 resource "aws_nat_gateway" "wl5vpc_ngw_1a" {
-  allocation_id = aws_eip.elastic_ip.id
+  allocation_id = aws_eip.elastic_ip_1a.id
   subnet_id     = aws_subnet.pub_subnet_1a.id
   depends_on    = [aws_internet_gateway.wl5vpc_igw] # critical to have this for systematic creation of resources
 
@@ -239,7 +239,7 @@ resource "aws_nat_gateway" "wl5vpc_ngw_1a" {
 
 #Creating the nat gateway
 resource "aws_nat_gateway" "wl5vpc_ngw_1b" {
-  allocation_id = aws_eip.elastic_ip.id
+  allocation_id = aws_eip.elastic_ip_1b.id
   subnet_id     = aws_subnet.pub_subnet_1b.id
   depends_on    = [aws_internet_gateway.wl5vpc_igw] # critical to have this for systematic creation of resources
 
@@ -248,3 +248,4 @@ resource "aws_nat_gateway" "wl5vpc_ngw_1b" {
   }
 
 }
+
