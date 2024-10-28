@@ -17,7 +17,7 @@ pipeline {
       steps {
         sh '''#!/bin/bash
         source venv/bin/activate
-        pip install -r requirements.txt
+        pip install -r ./backend/requirements.txt
         pip install pytest-django
         echo "1"
         python backend/manage.py makemigrations
