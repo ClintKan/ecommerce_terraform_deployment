@@ -19,11 +19,7 @@ pipeline {
         source venv/bin/activate
         pip install -r ./backend/requirements.txt
         pip install pytest-django
-        echo "1"
         python backend/manage.py makemigrations
-        // python backend/manage.py migrate
-        // pytest backend/account/tests.py --verbose --junit-xml test-reports/results.xml
-
         ''' 
       }
     }
