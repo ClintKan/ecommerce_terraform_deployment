@@ -41,20 +41,6 @@ sudo systemctl enable node_exporter
 # Print the public IP address and Node Exporter port
 echo "Node Exporter installation complete. It's accessible at http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):9100/metrics"
 
-# Add Node Exporter job to Prometheus config
-cat << EOF | sudo tee -a /opt/prometheus/prometheus.yml
-
-  - job_name: 'node_exporter'
-    static_configs:
-      - targets: ['localhost:9100']
-EOF
-
-# Restart Prometheus to apply the new configuration
-sudo systemctl restart prometheus
-
-echo "Node Exporter job added to Prometheus configuration. Prometheus has been restarted."
-
-
 ####--------- Installing App requirements
 
 
