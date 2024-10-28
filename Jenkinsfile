@@ -8,12 +8,8 @@ pipeline {
         sudo apt upgrade -y
         sudo add-apt-repository ppa:deadsnakes/ppa -y
         sudo apt install python3.9 python3-pip python3.9-venv -y python3.9-dev -y
-        echo "Line 11"
         echo "$PrivateIP"
-        echo "Line 13"
-        pip install -r requirements.txt
         python3.9 -m venv venv
-        . venv/bin/activate
         '''
      }
    }
@@ -21,6 +17,7 @@ pipeline {
       steps {
         sh '''#!/bin/bash
         source venv/bin/activate
+        pip install -r requirements.txt
         pip install pytest-django
         echo "1"
         python backend/manage.py makemigrations
@@ -28,6 +25,7 @@ pipeline {
         python backend/manage.py migrate
         echo "3"
         pytest backend/account/tests.py --verbose --junit-xml test-reports/results.xml
+
         ''' 
       }
     }
@@ -35,7 +33,15 @@ pipeline {
      stage('Init') {
        steps {
           dir('Terraform') {
-            sh 'terraform init' 
+            sh '''
+            sudo apt update && sudo apt install -y gnupg software-properties-common
+            wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+            echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+            sudo apt update && sudo apt upgrade -y
+            sudo apt-get install terraform
+            terraform --version
+            terraform init
+            ''' 
             }
         }
       } 
