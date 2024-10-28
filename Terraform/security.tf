@@ -71,7 +71,7 @@ resource "aws_security_group" "priv_secgrp" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/25"]
+    cidr_blocks = ["0.0.0.0/0"] #10.0.0.0/25
   }
   ingress {
     description = "Django"
