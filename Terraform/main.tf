@@ -11,7 +11,7 @@ resource "aws_vpc" "wl5vpc" {
 
 #Creating the elastic IP
 resource "aws_eip" "elastic_ip_1b" {
-  instance = aws_nat_gateway.wl5vpc_ngw_1b.id
+  #instance = aws_nat_gateway.wl5vpc_ngw_1b.id
   domain = "vpc"
   tags = {
     "Name" : "wl5vpc_eip_1b"
@@ -20,7 +20,7 @@ resource "aws_eip" "elastic_ip_1b" {
 
 #Creating the elastic IP
 resource "aws_eip" "elastic_ip_1a" {
-  instance = aws_nat_gateway.wl5vpc_ngw_1a.id
+  #instance = aws_nat_gateway.wl5vpc_ngw_1a.id
   domain = "vpc"
   tags = {
     "Name" : "wl5vpc_eip_1a"
