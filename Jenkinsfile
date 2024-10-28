@@ -20,6 +20,8 @@ pipeline {
     stage ('Test') {
       steps {
         sh '''#!/bin/bash
+        pwd
+        ls -al
         pip install pytest-django
         python backend/manage.py makemigrations
         python backend/manage.py migrate
