@@ -47,7 +47,7 @@ pipeline {
       stage('Apply') {
         steps {
           dir('Terraform') {
-            sh 'terraform apply plan.tfplan'
+            sh 'terraform apply -no-color plan.tfplan'
             }
         }  
       }       
