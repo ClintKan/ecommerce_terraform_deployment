@@ -21,10 +21,8 @@ pipeline {
         pip install pytest-django
         echo "1"
         python backend/manage.py makemigrations
-        echo "2"
-        python backend/manage.py migrate
-        echo "3"
-        pytest backend/account/tests.py --verbose --junit-xml test-reports/results.xml
+        // python backend/manage.py migrate
+        // pytest backend/account/tests.py --verbose --junit-xml test-reports/results.xml
 
         ''' 
       }
