@@ -29,7 +29,6 @@ pipeline {
         python backend/manage.py migrate
         echo "3"
         pytest backend/account/tests.py --verbose --junit-xml test-reports/results.xml
-        echo "3"
         ''' 
       }
     }
