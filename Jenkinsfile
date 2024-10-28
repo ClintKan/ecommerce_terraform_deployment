@@ -20,8 +20,7 @@ pipeline {
     stage ('Test') {
       steps {
         sh '''#!/bin/bash
-        pwd
-        ls -al
+        source venv/bin/activate
         pip install pytest-django
         echo "1"
         python backend/manage.py makemigrations
