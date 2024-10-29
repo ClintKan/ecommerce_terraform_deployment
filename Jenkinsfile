@@ -20,8 +20,11 @@ pipeline {
         pip install -r ./backend/requirements.txt
         pip install pytest-django
         python backend/manage.py makemigrations
+        echo "1"
         python backend/manage.py migrate
+        echo "2"
         pytest backend/account/tests.py --verbose --junit-xml test-reports/results.xml
+        echo "3"
         ''' 
       }
     }
