@@ -42,6 +42,7 @@ resource "aws_vpc_peering_connection" "Peering_wl5_default" {
   }
 }
 
+
 resource "aws_lb" "wl5-lb" {
   name               = "wl5-lb"
   internal           = false
