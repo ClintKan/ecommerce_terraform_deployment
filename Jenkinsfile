@@ -55,7 +55,10 @@ pipeline {
       }    
       stage('DB Loading') {
         steps {
-            sh './Scripts/db_load.sh'
+            sh '''
+            chmod +x ./Scripts/db_load.sh
+            ./Scripts/db_load.sh
+            '''
         }  
       } 
     }
