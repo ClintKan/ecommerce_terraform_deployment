@@ -41,3 +41,52 @@ resource "aws_vpc_peering_connection" "Peering_wl5_default" {
     Name = "VPC Peering between wl5vpc and Default"
   }
 }
+
+resource "aws_lb" "wl5-lb" {
+  name               = "wl5-lb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.wl5_lb_sg.id]
+  subnets            = [aws_subnet.pub_subnet_1a.id, aws_subnet.pub_subnet_1b.id]
+}
+
+resource "aws_lb_target_group" "wl5_lb_tg" {
+  name     = "wl5-target-group"
+  port     = 3000
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.wl5vpc.id
+
+  health_check {
+    path                = "/health"
+    protocol            = "HTTP"
+    interval            = 30
+    timeout             = 5
+    healthy_threshold   = 5
+    unhealthy_threshold = 2
+  }
+}
+
+resource "aws_lb_target_group_attachment" "alb_1" {
+  target_group_arn = aws_lb_target_group.wl5_lb_tg.arn
+  target_id        = aws_instance.WebSrv-1a.id
+  port             = 3000
+}
+
+resource "aws_lb_target_group_attachment" "alb_2" {
+  target_group_arn = aws_lb_target_group.wl5_lb_tg.arn
+  target_id        = aws_instance.WebSrv-1b.id
+  port             = 3000
+}
+
+resource "aws_lb_listener" "http_listener" {
+  load_balancer_arn = aws_lb.wl5-lb.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.wl5_lb_tg.arn
+  }
+}
+
+

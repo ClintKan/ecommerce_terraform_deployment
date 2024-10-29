@@ -43,19 +43,53 @@ resource "aws_security_group" "pub_secgrp" {
     cidr_blocks = ["0.0.0.0/0"] # Allow traffic to any IP address
   }
 
-  # egress {
-  #   from_port   = 0
-  #   to_port     = 0
-  #   protocol    = "-1"              # "-1" means all protocols
-  #   cidr_blocks = ["172.31.0.0/20"] # Allow traffic to the specific IP address
-  # }
-
   # Tags for the security group
   tags = {
     "Name" : "pub_secgrp" # Name tag for the security group
     "Terraform" : "true"  # Custom tag to indicate this SG was created with Terraform
   }
 }
+
+
+####------
+
+# Load Balancer Security Group "Load Balancer".
+resource "aws_security_group" "wl5_lb_sg" {
+  name        = "wl5_lb_sg"
+  description = "sec grp for load balancer"
+  vpc_id      = aws_vpc.wl5vpc.id
+
+  # Ingress rules:
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Egress is the traffic coming out of the infra
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"          # "-1" means all protocols
+    cidr_blocks = ["0.0.0.0/0"] # Allow traffic to any IP address
+  }
+
+  # Tags for the security group
+  tags = {
+    "Name" : "wl5_lb_sg" # Name tag for the security group
+  }
+}
+
+####------
 
 
 
