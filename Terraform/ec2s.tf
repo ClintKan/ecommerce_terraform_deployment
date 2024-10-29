@@ -51,7 +51,7 @@ resource "aws_instance" "Backend-1a" {
   subnet_id              = aws_subnet.priv_subnet_1a.id # associating a subnet to be tied to this EC2
 
   tags = {
-    "Name" : "AppSrv-1a"
+    "Name" : "Backend-1a"
   }
 
   depends_on = [aws_db_instance.postgres_db]
