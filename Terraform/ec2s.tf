@@ -1,5 +1,5 @@
 # Creating of the EC2 Instance for the web server in AZ - us-east-1a, in the pub subnet
-resource "aws_instance" "WebSrv-1a" {
+resource "aws_instance" "Frontend-1a" {
   ami           = "ami-0866a3c8686eaeeba" # AMI ID of Ubuntu Server 24.04 LTS (HVM), SSD Volume Type
   instance_type = var.instance_type       # Specify the desired EC2 instance size.
 
@@ -10,15 +10,15 @@ resource "aws_instance" "WebSrv-1a" {
   subnet_id              = aws_subnet.pub_subnet_1a.id # associating a subnet to be tied to this EC2
 
   tags = {
-    "Name" : "WebSrv-1a"
+    "Name" : "Frontend-1a"
   }
 
-  depends_on = [aws_instance.AppSrv-1a]
+  depends_on = [aws_instance.Backend-1a]
 
 }
 
 # Creating of the EC2 Instance for the web server in AZ - us-east-1b, in the pub subnet
-resource "aws_instance" "WebSrv-1b" {
+resource "aws_instance" "Frontend-1b" {
   ami           = "ami-0866a3c8686eaeeba" # AMI ID of Ubuntu Server 24.04 LTS (HVM), SSD Volume Type
   instance_type = var.instance_type       # Specify the desired EC2 instance size.
 
@@ -29,10 +29,10 @@ resource "aws_instance" "WebSrv-1b" {
   subnet_id              = aws_subnet.pub_subnet_1b.id # associating a subnet to be tied to this EC2
 
   tags = {
-    "Name" : "WebSrv-1b"
+    "Name" : "Frontend-1b"
   }
 
-  depends_on = [aws_instance.AppSrv-1b]
+  depends_on = [aws_instance.Backend-1b]
 
 }
 
@@ -40,7 +40,7 @@ resource "aws_instance" "WebSrv-1b" {
 
 
 # Creating of the EC2 Instance for the App server in AZ - us-east-1a, in the priv subnet
-resource "aws_instance" "AppSrv-1a" {
+resource "aws_instance" "Backend-1a" {
   ami           = "ami-0866a3c8686eaeeba" # AMI ID of Ubuntu Server 24.04 LTS (HVM), SSD Volume Type
   instance_type = var.instance_type       # Specify the desired EC2 instance size.
 
@@ -59,7 +59,7 @@ resource "aws_instance" "AppSrv-1a" {
 }
 
 # Creating of the EC2 Instance for the App server in AZ - us-east-1b, in the priv subnet
-resource "aws_instance" "AppSrv-1b" {
+resource "aws_instance" "Backend-1b" {
   ami           = "ami-0866a3c8686eaeeba" # AMI ID of Ubuntu Server 24.04 LTS (HVM), SSD Volume Type
   instance_type = var.instance_type       # Specify the desired EC2 instance size.
 
@@ -70,7 +70,7 @@ resource "aws_instance" "AppSrv-1b" {
   subnet_id              = aws_subnet.priv_subnet_1b.id # associating a subnet to be tied to this EC2
 
   tags = {
-    "Name" : "AppSrv-1b"
+    "Name" : "Backend-1b"
   }
 
   depends_on = [aws_db_instance.postgres_db]

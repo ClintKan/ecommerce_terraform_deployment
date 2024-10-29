@@ -68,13 +68,13 @@ resource "aws_lb_target_group" "wl5_lb_tg" {
 
 resource "aws_lb_target_group_attachment" "alb_1" {
   target_group_arn = aws_lb_target_group.wl5_lb_tg.arn
-  target_id        = aws_instance.WebSrv-1a.id
+  target_id        = aws_instance.Frontend-1a.id
   port             = 3000
 }
 
 resource "aws_lb_target_group_attachment" "alb_2" {
   target_group_arn = aws_lb_target_group.wl5_lb_tg.arn
-  target_id        = aws_instance.WebSrv-1b.id
+  target_id        = aws_instance.Frontend-1b.id
   port             = 3000
 }
 

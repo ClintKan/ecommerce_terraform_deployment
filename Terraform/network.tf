@@ -85,7 +85,7 @@ resource "aws_route_table" "priv1a_rttable" {
   vpc_id = aws_vpc.wl5vpc.id
 
   route {
-    cidr_block = "10.0.0.0/26" # this is destination the traffic should get to
+    cidr_block = "0.0.0.0/0" # 10.0.0.0/26" # this is destination the traffic should get to
     gateway_id = aws_nat_gateway.wl5vpc_ngw_1a.id
   }
   tags = {

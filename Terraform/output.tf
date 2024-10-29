@@ -1,11 +1,11 @@
 # Displaying the public IP address of the WebSrv EC2 in AZ-1a instance after creation.
 output "instance_ip_1a" {
-  value = aws_instance.WebSrv-1a.public_ip
+  value = aws_instance.Frontend-1a.public_ip
 }
 
 # Displaying the public IP address of the WebSrv EC2 in AZ-1b instance after creation.
 output "instance_ip_1b" {
-  value = aws_instance.WebSrv-1b.public_ip
+  value = aws_instance.Frontend-1b.public_ip
 
 }
 
