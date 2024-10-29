@@ -13,7 +13,7 @@ resource "aws_instance" "Frontend-1a" {
     "Name" : "Frontend-1a"
   }
 
-  depends_on = [aws_instance.Backend-1a]
+  #depends_on = [aws_instance.Backend-1a]
 
 }
 
@@ -32,7 +32,7 @@ resource "aws_instance" "Frontend-1b" {
     "Name" : "Frontend-1b"
   }
 
-  depends_on = [aws_instance.Backend-1b]
+  #depends_on = [aws_instance.Backend-1b]
 
 }
 
