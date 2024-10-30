@@ -9,8 +9,8 @@ output "instance_ip_1b" {
 
 }
 
-# Output the public IP address of the NAT Gateway's Elastic IP in AZ 1a
-output "nat_gateway_ip_1a" {
+# Output the public IP address of the NAT Gateway's Elastic IP
+output "nat_gateway_ip" {
   value = aws_nat_gateway.wl5vpc_ngw_1a.id
 
 }

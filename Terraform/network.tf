@@ -146,21 +146,6 @@ resource "aws_route_table_association" "priv1b" {
 
 ######------------------
 
-
-#Creating a Private RDS Route Table 1
-resource "aws_route_table" "rds_rttbl_1" {
-  vpc_id = aws_vpc.wl5vpc.id
-
-  route {
-    cidr_block = "10.0.0.128/27" # this is destination the traffic should get to
-    gateway_id = aws_nat_gateway.wl5vpc_ngw_1a.id
-  }
-  tags = {
-    "Name" : "rds_rttbl_1"
-  }
-
-}
-
 #Creating the RDS private_subnet 1a
 resource "aws_subnet" "rds_subnet_1a" {
   vpc_id            = aws_vpc.wl5vpc.id
@@ -183,7 +168,6 @@ resource "aws_subnet" "rds_subnet_1b" {
 
 }
 
-
 #Creating the RDS Subnet Groups
 resource "aws_db_subnet_group" "rds_subnet_group" {
   name       = "rds_subnet_group"
@@ -194,27 +178,15 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   }
 }
 
-# Associating the RDS route table with the rds_subnet_1a
-resource "aws_route_table_association" "rds_subnet_1a" {
-  subnet_id      = aws_subnet.rds_subnet_1a.id
-  route_table_id = aws_route_table.rds_rttbl_1.id
-}
-
-# Associating the RDS route table with the rds_subnet_1b
-resource "aws_route_table_association" "backend" {
-  subnet_id      = aws_subnet.rds_subnet_1b.id
-  route_table_id = aws_route_table.rds_rttbl_1.id
-}
-
 
 ###########--------------------------------------------------------------------------------------
 
 
 
-#Creating the nat gateway
+#Creating the nat gateway in AZ 1a
 resource "aws_nat_gateway" "wl5vpc_ngw_1a" {
   allocation_id = aws_eip.elastic_ip_1a.id
-  subnet_id     = aws_subnet.priv_subnet_1a.id
+  subnet_id     = aws_subnet.pub_subnet_1a.id
   depends_on    = [aws_internet_gateway.wl5vpc_igw] # critical to have this for systematic creation of resources
 
   tags = {
@@ -223,10 +195,10 @@ resource "aws_nat_gateway" "wl5vpc_ngw_1a" {
 
 }
 
-#Creating the nat gateway
+#Creating the nat gateway in AZ 1b
 resource "aws_nat_gateway" "wl5vpc_ngw_1b" {
   allocation_id = aws_eip.elastic_ip_1b.id
-  subnet_id     = aws_subnet.priv_subnet_1b.id
+  subnet_id     = aws_subnet.pub_subnet_1b.id
   depends_on    = [aws_internet_gateway.wl5vpc_igw] # critical to have this for systematic creation of resources
 
   tags = {

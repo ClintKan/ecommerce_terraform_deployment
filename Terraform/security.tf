@@ -91,8 +91,6 @@ resource "aws_security_group" "wl5_lb_sg" {
 
 ####------
 
-
-
 # Private Security Group "priv_secgrp" that allows SSH & Django traffic.
 resource "aws_security_group" "priv_secgrp" {
   name        = "priv_secgrp"
@@ -106,6 +104,14 @@ resource "aws_security_group" "priv_secgrp" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"] #10.0.0.0/25
+  }
+
+  ingress {
+    description = "SSH"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
     description = "Django"
