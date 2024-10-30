@@ -82,5 +82,3 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
 
 ## Conclusion
 This workload showcases the power of Terraform and Jenkins in automating the deployment process, to provide a robust, scalable and yet more resiient infrastructure for an application. This can be an efficient and more consistent, yet streamlined way of setting up cloud infrastructure in any environment, paving the way for more efficient development practices.
-
-*Insert any additional sections you find relevant here.*
