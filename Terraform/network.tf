@@ -111,7 +111,7 @@ resource "aws_route_table" "priv1b_rttable" {
 #Creating the private_subnet 1a
 resource "aws_subnet" "priv_subnet_1a" {
   vpc_id            = aws_vpc.wl5vpc.id
-  cidr_block        = "0.0.0.0/0" #"10.0.0.128/27"
+  cidr_block        = "10.0.0.128/27"
   availability_zone = "us-east-1a"
   tags = {
     "Name" : "priv_subnet_1a"
@@ -122,7 +122,7 @@ resource "aws_subnet" "priv_subnet_1a" {
 #Creating the private_subnet 1b
 resource "aws_subnet" "priv_subnet_1b" {
   vpc_id            = aws_vpc.wl5vpc.id
-  cidr_block        = "0.0.0.0/0" #"10.0.0.160/27"
+  cidr_block        = "10.0.0.160/27"
   availability_zone = "us-east-1b"
   tags = {
     "Name" : "priv_subnet_1b"
