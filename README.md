@@ -3,9 +3,11 @@
 ## Purpose
 The purpose of this workload is to automate the deployment of an ecommerce application using Terraform and Jenkins, implementing Infrastructure as Code (IaC). This allows for more consistent, repeatable, and manageable infrastructure setups, significantly improving upon the manual processes used in previous workloads.
 
+
 <div align="center">
 	<img width="630" alt="image" src="https://github.com/user-attachments/assets/123fecb7-21a3-41b1-a74d-a5d6c93ab550">
 </div>
+
 
 ## Steps Taken
 
@@ -37,7 +39,7 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
    - Integrated Jenkins to automate the deployment pipeline. The stages include:
      - **Build**: Prepared the Jenkins' environment for the deployment of the application code onto the Jenkins EC2.
      - **Test**: This was running pre-defined tests to ensure code quality.
-     - **Init, Plan, and Apply**: These were all Terraform extrapolated commands incorporated into the Jenkins' CI/CD pipeline. They ensured the 		infrastructure was built according to the defined specifications of the Terraform ".tf" files.
+     - **Init, Plan, and Apply**: These were all Terraform extrapolated commands incorporated into the Jenkins' CI/CD pipeline. They ensured the infrastructure was built according to the defined specifications of the Terraform ".tf" files.
 
 4. **Scripting for Automation**:
    - Created user data scripts (located in the Scripts folder) to automate the manual steps that were done in Step 1 to configure and prepare the
@@ -53,15 +55,24 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
 7. **Documentation**:
    - Created a comprehensive README file documenting the process, challenges faced, and potential optimizations for future iterations.
 
+
 ## Issues/Troubleshooting
 - **Instance Configuration Issues**: Initially faced challenges with incorrect security group settings that prevented communication between the frontend and backend EC2s. This was resolved by correctly configuring the security groups to allow necessary traffic.
 - **Database Connection Errors**: Encountered issues connecting to the RDS database due to incorrect environment variable settings. This was rectified by ensuring that the settings in `settings.py` were appropriately configured.
+
 
 ## Optimization
 - Future improvements could include:
   - Implementing more advanced monitoring solutions to provide insights into application performance.
   - Considering the use of containerization (e.g., Docker) for the application deployment to simplify dependency management and scaling.
   - Automating the database migrations further within the CI/CD pipeline for smoother updates and changes.
+  - Creating two RDS Databases instead of one. This would bring about redundancy on all tiers not just the first two layers.
+  - Setting up HTTPS - using SSL/TSL certs — for a more secure connection
+  - Use Route53 to set up a custom DNS name - i.e. ecommerce.com
+  - Using Modules to make the terraform code re-usable.
+  - Creating of an S3 bucket to better manage/handle the terraform state file. Having a centralized
+  - Better management of the database username & password in my code.
+
 
 ## Business Intelligence
 - Questions to consider:
