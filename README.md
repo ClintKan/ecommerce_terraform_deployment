@@ -20,17 +20,18 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
      - **RDS Database**: Added an RDS instance to store application data, enhancing data management and availability.
 
    - **Terraform Files Created**:
-     - `ec2s.tf`: *[This had all four EC2s creation code]*
-     - `main.tf`: *[This had the custom VPC, VPC Peering between the two VPCs default and custom, load balancer. Then it also had Elastic IPs, (in both
-       availability zones),  ]*
-     - `network.tf`: *[This had the internet gateway, the two NAT gateways attached in the public subnets of both availability zones. Then, the
-       public & private route tables (and their associations), the security groups; public, private and the RDS' ]*
-     - `outputs.tf`: *[This was to written to output the IP addresses of both frontend EC2s]*
-     - `providers.tf`: *[This had the aws variable identifiers (for the key to be used for authenticating. The epecific details of these credentials were passed in Jenkins though. More on that later.]*
-     - `rds.tf`: *[This was the file showing housing how the RDS was to be created - with which infrastructure specifics.]*
-     - `security.tf`: *[This was the file with the security groups controlling the ingress and egress traffic for all 4 EC2s and the RDS instance.]*
-     - `variables.auto.tf`: *[This declared the region in which the infrastructure was to be placed in and the type of EC2s]*
-     - `variables.tf`: *[This declared the variables that surface anywhere within the above .tf files, plus the credentials passed from Jenkins]*
+     - `ec2s.tf`: *This had all four EC2s creation code*
+     - `main.tf`: *This had the custom VPC, VPC Peering between the two VPCs default and custom, load balancer. Then it also had Elastic IPs, (in both
+       availability zones).*
+     - `network.tf`: *This had the internet gateway, the two NAT gateways attached in the public subnets of both availability zones. Then, the
+	public & private route tables (and their associations), the security groups; public, private and the RDS'*
+     - `outputs.tf`: *This was to written to output the IP addresses of both frontend EC2s*
+     - `providers.tf`: *This had the aws variable identifiers (for the key to be used for authenticating. The epecific details of these credentials 
+	were passed in Jenkins though. More on that later.*
+     - `rds.tf`: *This was the file showing housing how the RDS was to be created - with which infrastructure specifics.*
+     - `security.tf`: *This was the file with the security groups controlling the ingress and egress traffic for all 4 EC2s and the RDS instance.*
+     - `variables.auto.tf`: *This declared the region in which the infrastructure was to be placed in and the type of EC2s.*
+     - `variables.tf`: *.This declared the variables that surface anywhere within the above .tf files, plus the credentials passed from Jenkins.*
 
 3. **CI/CD Pipeline Implementation**:
    - Integrated Jenkins to automate the deployment pipeline. The stages include:
