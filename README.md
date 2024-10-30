@@ -40,19 +40,18 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
      - **Init, Plan, and Apply**: These were all Terraform extrapolated commands incorporated into the Jenkins' CI/CD pipeline. They ensured the 		infrastructure was built according to the defined specifications of the Terraform ".tf" files.
 
 4. **Scripting for Automation**:
-   - Created user data scripts that configure the frontend and backend EC2 instances during their creation. This automation streamlines the deployment process by automatically installing dependencies and configuring environment settings.
+   - Created user data scripts (located in the Scripts folder) to automate the manual steps that were done in Step 1 to configure and prepare the
+     frontend and backend EC2 instances during their creation. This automation streamlines the deployment process by automatically installing
+     dependencies and configuring environment settings.
 
 5. **Environment Variable Management**:
    - Used Jenkins Secret Manager to handle sensitive information, such as AWS credentials, ensuring security and compliance.
 
 6. **Monitoring Setup**:
-   - Deployed an additional EC2 instance for monitoring purposes to track the health and performance of the deployed resources.
+   - Deployed an additional EC2 instance in the default VPC for monitoring purposes to track the health and performance of the deployed resources in the custom VPC named _**wl5vpc**_.
 
 7. **Documentation**:
    - Created a comprehensive README file documenting the process, challenges faced, and potential optimizations for future iterations.
-
-## System Design Diagram
-*Insert System Design Diagram here*
 
 ## Issues/Troubleshooting
 - **Instance Configuration Issues**: Initially faced challenges with incorrect security group settings that prevented communication between the frontend and backend EC2s. This was resolved by correctly configuring the security groups to allow necessary traffic.
@@ -71,6 +70,6 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
   - How can we ensure data security and compliance in our deployment?
 
 ## Conclusion
-This workload showcases the power of Terraform and Jenkins in automating the deployment process, providing a robust and scalable infrastructure for an ecommerce application. By leveraging IaC principles, we can ensure consistent environments and streamline updates, paving the way for more efficient development practices.
+This workload showcases the power of Terraform and Jenkins in automating the deployment process, to provide a robust, scalable and yet more resiient infrastructure for an application. This can be an efficient and more consistent, yet streamlined way of setting up cloud infrastructure in any environment, paving the way for more efficient development practices.
 
 *Insert any additional sections you find relevant here.*
