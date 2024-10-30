@@ -20,9 +20,9 @@ resource "aws_security_group" "pub_secgrp" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description = "HTTPS"
-    from_port   = 443
-    to_port     = 443
+    description = "Custom"
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

@@ -76,4 +76,4 @@ sudo npm install react-scripts --save
 
 #Setting Node.js options for legacy compatibility and starting the app
 export NODE_OPTIONS=--openssl-legacy-provider
-npm start
+sudo npm start

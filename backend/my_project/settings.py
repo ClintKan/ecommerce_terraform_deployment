@@ -29,7 +29,7 @@ DEBUG = True
 
 # Retrieving the PrivateIP of the App/Backend Server
 private_ip = os.environ.get("PrivateIP")
-ALLOWED_HOSTS = ["private_ip"] # add the private ip of where you've placed this Django app
+ALLOWED_HOSTS = ["10.0.0.143",""] # add the private ip of where you've placed this Django app
 
 # Application definition
 
@@ -87,8 +87,8 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'ecommerce',
-       'USER': 'kurackwl5',
+       'NAME': 'ecommercedb',
+       'USER': 'kurack',
        'PASSWORD': 'eeeca54270b11bd4d4',
        'HOST': 'ecommerce-db.c74w2cq4s23p.us-east-1.rds.amazonaws.com',
        'PORT': '5432',
