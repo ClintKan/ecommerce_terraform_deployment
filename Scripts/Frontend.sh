@@ -47,7 +47,7 @@ echo "Node Exporter installation complete. It's accessible at http://$(curl -s h
 
 #Installing Node.js and npm
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt install -y nodejs
+# sudo apt install -y nodejs
 
 #Checking and installing updates
 sudo apt update && sudo apt upgrade -y
@@ -57,7 +57,9 @@ sudo apt --fix-broken install
 
 sleep 15
 
-sudo apt install nodejs npm
+sudo apt install nodejs npm -y
+
+sudo npm i /home/ubuntu/ecommerce_terraform_deployment/frontend
 
 #scp -i “path-to-private-key.pem” ubuntu@public_ip_of_the_destination:/sourcepath ~/
 
@@ -65,10 +67,10 @@ sudo apt install nodejs npm
 git clone https://github.com/ClintKan/ecommerce_terraform_deployment.git
 
 # Move into the project folder
-cd ./ecommerce_terraform_deployment
+cd /home/ubuntu/ecommerce_terraform_deployment/frontend
 
 #Installing react-scripts pkgs
-npm install react-scripts --save
+sudo npm install react-scripts --save
 
 # screen
 

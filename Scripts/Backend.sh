@@ -10,10 +10,10 @@ echo "$SSH_PUBKEY" >> .ssh/authorized_keys
 
 # Downloading and installing Node Exporter
 NODE_EXPORTER_VERSION="1.5.0"
-wget https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
-tar xvfz node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
+sudo wget https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
+sudo tar xvfz node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
 sudo mv node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64/node_exporter /usr/local/bin/
-rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
+sudo rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
 
 # Create a Node Exporter user
 sudo useradd --no-create-home --shell /bin/false node_exporter
@@ -59,27 +59,31 @@ export PrivateIP="$(hostname -I)"
 git clone https://github.com/ClintKan/ecommerce_terraform_deployment.git
 
 # Move into the project folder
-cd ./ecommerce_terraform_deployment
+cd /home/ubuntu/ecommerce_terraform_deployment
 
 #creating and activating a virtual environment 'venv'
 python3.9 -m venv venv
-source venv/bin/activate
+source /home/ubuntu/ecommerce_terraform_deployment/venv/bin/activate
 
 # Chnaging into the proper folder
-cd ./ecommerce_terraform_deployment/backend/
+cd /home/ubuntu/ecommerce_terraform_deployment/backend/
+
+sudo apt --fix-broken install
 
 #Installing libs needed for the app
-sudo apt install python3.9 python3-pip python3.9-venv python3.9-dev -y
-sudo apt install python3-pip -y && pip install --upgrade pip
+sudo apt install python3-pip -y # && pip install --upgrade pip
+sudo apt install python3.9 python3.9-venv python3.9-dev -y
 
 #Installing more requirement libs/bins for the app
-pip install -r requirements.txt
+pip install -r /home/ubuntu/ecommerce_terraform_deployment/backend/requirements.txt
 
 # local variable to call the private IP of the ec2 i.e in list format 'IP_Address'
 #sed -i 's/http:\/\/private_ec2_ip:8000/http:\/\/your_ip_address:8000/' package.json
 
+sudo chmod o+w /home/ubuntu/ecommerce_terraform_deployment/venv/lib/python3.9/site-packages/
+
 #Changing permissions of the file 'manage.py' to be run
-chmod +x ./manage.py
+chmod +x /home/ubuntu/ecommerce_terraform_deployment/backend/manage.py
 
 #Running the Django Server
-python ./manage.py runserver 0.0.0.0:8000
+python /home/ubuntu/ecommerce_terraform_deployment/backend/manage.py runserver 0.0.0.0:8000
