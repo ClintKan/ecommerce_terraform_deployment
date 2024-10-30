@@ -90,7 +90,7 @@ DATABASES = {
        'NAME': 'ecommerce',
        'USER': 'kurackwl5',
        'PASSWORD': 'eeeca54270b11bd4d4',
-       'HOST': 'ecommerce.amazonaws.com',
+       'HOST': 'ecommerce-db.c74w2cq4s23p.us-east-1.rds.amazonaws.com',
        'PORT': '5432',
    }, 
    'sqlite': {

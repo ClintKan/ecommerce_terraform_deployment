@@ -111,7 +111,7 @@ resource "aws_route_table" "priv1b_rttable" {
 #Creating the private_subnet 1a
 resource "aws_subnet" "priv_subnet_1a" {
   vpc_id            = aws_vpc.wl5vpc.id
-  cidr_block        = "10.0.0.128/27"
+  cidr_block        = "0.0.0.0/0" #"10.0.0.128/27"
   availability_zone = "us-east-1a"
   tags = {
     "Name" : "priv_subnet_1a"
@@ -122,7 +122,7 @@ resource "aws_subnet" "priv_subnet_1a" {
 #Creating the private_subnet 1b
 resource "aws_subnet" "priv_subnet_1b" {
   vpc_id            = aws_vpc.wl5vpc.id
-  cidr_block        = "10.0.0.160/27"
+  cidr_block        = "0.0.0.0/0" #"10.0.0.160/27"
   availability_zone = "us-east-1b"
   tags = {
     "Name" : "priv_subnet_1b"
@@ -214,7 +214,7 @@ resource "aws_route_table_association" "backend" {
 #Creating the nat gateway
 resource "aws_nat_gateway" "wl5vpc_ngw_1a" {
   allocation_id = aws_eip.elastic_ip_1a.id
-  subnet_id     = aws_subnet.pub_subnet_1a.id
+  subnet_id     = aws_subnet.priv_subnet_1a.id
   depends_on    = [aws_internet_gateway.wl5vpc_igw] # critical to have this for systematic creation of resources
 
   tags = {
@@ -226,7 +226,7 @@ resource "aws_nat_gateway" "wl5vpc_ngw_1a" {
 #Creating the nat gateway
 resource "aws_nat_gateway" "wl5vpc_ngw_1b" {
   allocation_id = aws_eip.elastic_ip_1b.id
-  subnet_id     = aws_subnet.pub_subnet_1b.id
+  subnet_id     = aws_subnet.priv_subnet_1b.id
   depends_on    = [aws_internet_gateway.wl5vpc_igw] # critical to have this for systematic creation of resources
 
   tags = {
