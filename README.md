@@ -33,11 +33,11 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
      - `variables.auto.tf`: *This declared the region in which the infrastructure was to be placed in and the type of EC2s.*
      - `variables.tf`: *.This declared the variables that surface anywhere within the above .tf files, plus the credentials passed from Jenkins.*
 
-3. **CI/CD Pipeline Implementation**:
+3. **Jenkins CI/CD Pipeline**:
    - Integrated Jenkins to automate the deployment pipeline. The stages include:
-     - **Build**: Compiling the application code.
-     - **Test**: Running pre-defined tests to ensure code quality.
-     - **Init, Plan, and Apply**: Utilizing Terraform commands to initialize, plan, and apply the infrastructure changes, ensuring the infrastructure is built according to the defined specifications.
+     - **Build**: Prepared the Jenkins' environment for the deployment of the application code onto the Jenkins EC2.
+     - **Test**: This was running pre-defined tests to ensure code quality.
+     - **Init, Plan, and Apply**: These were all Terraform extrapolated commands incorporated into the Jenkins' CI/CD pipeline. They ensured the 		infrastructure was built according to the defined specifications of the Terraform ".tf" files.
 
 4. **Scripting for Automation**:
    - Created user data scripts that configure the frontend and backend EC2 instances during their creation. This automation streamlines the deployment process by automatically installing dependencies and configuring environment settings.
