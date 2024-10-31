@@ -63,15 +63,15 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
 
 ## Optimization
 - Future improvements could include:
-  - Implementing more advanced monitoring solutions to provide insights into application performance.
-  - Considering the use of containerization (e.g., Docker) for the application deployment to simplify dependency management and scaling.
+  - Considering the use of containerization (e.g., Docker) for the application deployment to simplify the management of app and
+    environment dependency management.
   - Automating the database migrations further within the CI/CD pipeline for smoother updates and changes.
   - Creating two RDS Databases instead of one. This would bring about redundancy on all tiers not just the first two layers.
   - Setting up HTTPS - using SSL/TSL certs — for a more secure connection
   - Use Route53 to set up a custom DNS name - i.e. ecommerce.com
   - Using Modules to make the terraform code re-usable.
   - Creating of an S3 bucket to better manage/handle the terraform state file. Having a centralized
-  - Better management of the database username & password in my code.
+  - Automating the updating of different components of the application code to reflect the backend IP address of the backend EC2s.
 
 
 ## Business Intelligence
