@@ -5,6 +5,11 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
 
 
 <div align="center">
+	<img width="1233" alt="Pasted Graphic 88" src="https://github.com/user-attachments/assets/68fcc99b-7c86-4bd3-a602-1591b137e29e">
+</div>
+
+
+<div align="center">
 	<img width="630" alt="image" src="https://github.com/user-attachments/assets/123fecb7-21a3-41b1-a74d-a5d6c93ab550">
 </div>
 
@@ -75,10 +80,11 @@ The purpose of this workload is to automate the deployment of an ecommerce appli
 
 
 ## Business Intelligence
-- Questions to consider:
-  - How can the deployment pipeline be enhanced to reduce downtime during updates?
-  - What additional metrics can be collected to improve user experience?
-  - How can we ensure data security and compliance in our deployment?
+- In this section, it was to load the RDS database (from the frontend) with sqlite data tables. Unfortunately, while I was unable get to this part - due to the project timeline, the database was aimed to map out relationship between the tables basing on the common data field within the tables.
+- Additionally, below are the questions that were meant to answered using SQL & Pandas;
+  - How many rows of data are there in these tables? What is the SQL query you would use to find out how many users, products, and orders there are?
+  - Which states ordered the most products? Least products? Provide the top 5 and bottom 5 states.
+  - Of all of the orders placed, which product was the most sold? Please prodide the top 3.
 
 ## Conclusion
 This workload showcases the power of Terraform and Jenkins in automating the deployment process, to provide a robust, scalable and yet more resiient infrastructure for an application. This can be an efficient and more consistent, yet streamlined way of setting up cloud infrastructure in any environment, paving the way for more efficient development practices.
